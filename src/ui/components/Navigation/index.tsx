@@ -1,17 +1,18 @@
 import React, { memo, ReactNode } from "react";
 import clsx from "clsx";
+import isEqual from "react-fast-compare";
+import Link from "next/link";
 
 // UI
 import { Box, Text } from "@app/ui";
-import Link from "next/link";
-import isEqual from "react-fast-compare";
 
-export interface NavigationItem {
+export interface NavigationItemProps {
   id: number;
   label: string;
   href: string;
   leftIcon?: JSX.Element;
   rightIcon?: ReactNode;
+  render?: (props: Omit<NavigationItemProps, "render">) => JSX.Element;
 }
 
 export interface NavigationHeader {
@@ -20,23 +21,31 @@ export interface NavigationHeader {
 }
 
 export interface NavigationProps {
-  navigationItems: NavigationItem[];
+  navigationItems: NavigationItemProps[];
   header?: NavigationHeader;
-  activeItem?: NavigationItem;
+  activeItem?: NavigationItemProps;
+  isCollapse?: boolean;
 }
 
-const NavigationItem = ({
+export const NavigationItem = ({
   href,
   label,
   leftIcon,
   rightIcon,
   isActive = false,
-}: Omit<NavigationItem, "id"> & { isActive?: boolean }) => (
+  isCollapse,
+}: Omit<NavigationItemProps, "id"> & {
+  isActive?: boolean;
+  isCollapse?: boolean;
+}) => (
   <Box as="li">
     <Link
       href={href}
       className={clsx(
         "group flex items-center gap-2 p-2 capitalize rounded-lg font-medium",
+        {
+          "justify-center": isCollapse,
+        },
         {
           "bg-violet-rgba-light": isActive,
           "hover:bg-violet-rgba-light": !isActive,
@@ -53,22 +62,26 @@ const NavigationItem = ({
           {leftIcon}
         </Text>
       )}
-      <Text as="span" className="flex-1">
-        {label}
-      </Text>
-      {rightIcon && (
-        <Text
-          as="span"
-          className={clsx(
-            {
-              hidden: !isActive,
-              "group-hover:inline-flex": !isActive,
-            },
-            "items-center"
+      {!isCollapse && (
+        <>
+          <Text as="span" className="flex-1">
+            {label}
+          </Text>
+          {rightIcon && (
+            <Text
+              as="span"
+              className={clsx(
+                {
+                  hidden: !isActive,
+                  "group-hover:inline-flex": !isActive,
+                },
+                "items-center"
+              )}
+            >
+              {rightIcon}
+            </Text>
           )}
-        >
-          {rightIcon}
-        </Text>
+        </>
       )}
     </Link>
   </Box>
@@ -78,22 +91,40 @@ const Navigation = ({
   navigationItems,
   activeItem,
   header,
+  isCollapse = false,
 }: NavigationProps) => {
   return (
     <Box as="nav">
       {header && (
         <Box className="py-5 px-2 flex items-center">
-          <Text className="uppercase text-xs font-bold flex-1">
+          <Text
+            className={clsx("uppercase text-xs font-bold flex-1", {
+              "text-center": isCollapse,
+            })}
+          >
             {header.title}
           </Text>
-          {header?.icon}
+          {!isCollapse && header?.icon}
         </Box>
       )}
       <Box as="ul" className="flex flex-col gap-3">
-        {navigationItems.map(({ id, ...props }) => {
+        {navigationItems.map(({ id, render, ...props }) => {
           const isActive = activeItem && activeItem.id === id;
 
-          return <NavigationItem key={id} {...props} isActive={isActive} />;
+          return (
+            <>
+              {render ? (
+                render({ id, ...props })
+              ) : (
+                <NavigationItem
+                  key={id}
+                  {...props}
+                  isActive={isActive}
+                  isCollapse={isCollapse}
+                />
+              )}
+            </>
+          );
         })}
       </Box>
     </Box>

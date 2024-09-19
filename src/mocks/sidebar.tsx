@@ -3,24 +3,13 @@ import { AiOutlineMessage } from "react-icons/ai";
 import { FaTasks } from "react-icons/fa";
 import { LuUsers } from "react-icons/lu";
 import { AiOutlineSetting } from "react-icons/ai";
-import { CiSquarePlus } from "react-icons/ci";
-import { Button } from "@nextui-org/button";
 
 // UI
-import { NavigationHeader, NavigationItem } from "@app/ui";
+import { NavigationItemProps } from "@app/ui";
 // Constants
 import { ROUTER } from "@app/constants";
 
-export const PROJECTS_HEADER: NavigationHeader = {
-  title: "My Project",
-  icon: (
-    <Button isIconOnly className="w-fit h-fit p-0 min-w-0 bg-transparent">
-      <CiSquarePlus className="w-4 h-4" />
-    </Button>
-  ),
-};
-
-export const ROUTINGS: NavigationItem[] = [
+export const ROUTINGS: NavigationItemProps[] = [
   {
     id: 1,
     label: "home",

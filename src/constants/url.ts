@@ -4,4 +4,5 @@ export const ROUTER = {
   TASKS: "/tasks",
   MEMBERS: "/members",
   SETTINGS: "/settings",
+  PROFILE: "/user/profile",
 };

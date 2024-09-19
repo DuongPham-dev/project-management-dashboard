@@ -1,10 +1,13 @@
 export * from "./common";
 
 export * from "./Logo";
+export * from "./Avatar";
 export {
   default as Navigation,
+  NavigationItem,
   type NavigationHeader,
-  type NavigationItem,
+  type NavigationItemProps,
   type NavigationProps,
 } from "./Navigation";
-export { default as Sidebar, type SidebarProps } from "./Sidebar";
+export * from "./Sidebar";
+export * from "./Header";
