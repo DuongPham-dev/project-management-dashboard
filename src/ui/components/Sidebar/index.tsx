@@ -139,17 +139,20 @@ export const Sidebar = ({ isClose = false, onToggleSidebar }: SidebarProps) => {
       {/* Main logo */}
       <Box className="h-[70px] flex items-center justify-between border-b-1 gap-3 px-5">
         <Logo />
-        <Button
-          isIconOnly
-          onClick={onToggleSidebar}
-          className="w-fit h-fit min-w-0 bg-transparent"
-        >
-          {isClose ? (
-            <Icon icon={MdKeyboardDoubleArrowRight} />
-          ) : (
-            <Icon icon={MdKeyboardDoubleArrowLeft} />
-          )}
-        </Button>
+        {/* TODO: Will re-open when a design for the collapsed state is found */}
+        {false && (
+          <Button
+            isIconOnly
+            onClick={onToggleSidebar}
+            className="w-fit h-fit min-w-0 bg-transparent"
+          >
+            {isClose ? (
+              <Icon icon={MdKeyboardDoubleArrowRight} />
+            ) : (
+              <Icon icon={MdKeyboardDoubleArrowLeft} />
+            )}
+          </Button>
+        )}
       </Box>
       {/* Navigation */}
       <Box as="section" className="p-5">

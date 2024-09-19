@@ -19,8 +19,8 @@ export const metadata: Metadata = {
     images: [
       {
         url: "/images/og-image-home.jpg",
-        width: 800,
-        height: 60,
+        width: 1200,
+        height: 630,
       },
     ],
     title: "Task. - Simplify Your Task Management",
