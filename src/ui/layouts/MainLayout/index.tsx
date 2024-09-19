@@ -2,10 +2,10 @@
 
 import React, { ReactNode } from "react";
 import { useDisclosure } from "@nextui-org/react";
+import clsx from "clsx";
 
 // UI
 import { Box, Header, Sidebar } from "@app/ui";
-import clsx from "clsx";
 
 interface MainLayoutProps {
   children: ReactNode;

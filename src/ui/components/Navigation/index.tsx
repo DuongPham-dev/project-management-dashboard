@@ -28,7 +28,7 @@ export interface NavigationHeader {
 export interface NavigationProps {
   navigationItems: NavigationItemProps[];
   header?: NavigationHeader;
-  activeItem?: NavigationItemProps;
+  activePath?: NavigationItemProps["href"];
   isCollapse?: boolean;
 }
 
@@ -63,13 +63,13 @@ export const NavigationItem = ({
       )}
     >
       {leftIcon && (
-        <Text as="span" className="flex items-center">
+        <Text as="span" className="flex items-center text-inherit">
           {leftIcon}
         </Text>
       )}
       {!isCollapse && (
         <>
-          <Text as="span" className="flex-1">
+          <Text as="span" className="flex-1 text-inherit">
             {label}
           </Text>
           {rightIcon && (
@@ -80,7 +80,7 @@ export const NavigationItem = ({
                   hidden: !isActive,
                   "group-hover:flex": !isActive,
                 },
-                "items-center"
+                "items-center text-inherit"
               )}
             >
               {rightIcon}
@@ -94,42 +94,40 @@ export const NavigationItem = ({
 
 const Navigation = ({
   navigationItems,
-  activeItem,
+  activePath,
   header,
   isCollapse = false,
-}: NavigationProps) => {
-  return (
-    <Box as="nav">
-      {header && (
-        <Box className="py-5 px-2 flex items-center">
-          <Text className={clsx("uppercase text-xs font-bold flex-1")}>
-            {header.title}
-          </Text>
-          {!isCollapse && header?.icon}
-        </Box>
-      )}
-      <Box as="ul" className="flex flex-col gap-3">
-        {navigationItems.map(({ id, render, ...props }) => {
-          const isActive = !!activeItem && activeItem.id === id;
-
-          return (
-            <>
-              {render ? (
-                render({ id, isActive, ...props })
-              ) : (
-                <NavigationItem
-                  key={id}
-                  {...props}
-                  isActive={isActive}
-                  isCollapse={isCollapse}
-                />
-              )}
-            </>
-          );
-        })}
+}: NavigationProps) => (
+  <Box as="nav">
+    {header && (
+      <Box className="py-5 px-2 flex items-center">
+        <Text className={clsx("uppercase text-xs font-bold flex-1")}>
+          {header.title}
+        </Text>
+        {!isCollapse && header?.icon}
       </Box>
+    )}
+    <Box as="ul" className="flex flex-col gap-3">
+      {navigationItems.map(({ id, render, ...props }) => {
+        const isActive = !!activePath && activePath === props.href;
+
+        return (
+          <>
+            {render ? (
+              render({ id, isActive, ...props })
+            ) : (
+              <NavigationItem
+                key={id}
+                {...props}
+                isActive={isActive}
+                isCollapse={isCollapse}
+              />
+            )}
+          </>
+        );
+      })}
     </Box>
-  );
-};
+  </Box>
+);
 
 export default memo(Navigation, isEqual);

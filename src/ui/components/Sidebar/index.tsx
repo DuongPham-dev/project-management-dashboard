@@ -1,5 +1,8 @@
+"use client";
+
 import React, { useCallback, useMemo } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Button } from "@nextui-org/button";
 import {
   MdKeyboardDoubleArrowLeft,
@@ -30,26 +33,34 @@ export interface SidebarProps {
 }
 
 export const Sidebar = ({ isClose = false, onToggleSidebar }: SidebarProps) => {
+  const pathname = usePathname();
+
   // When the Sidebar is collapsed, 'My Projects' only displays the project name instead of the icon
   const customRenderMyProjects = useCallback(
     ({ isActive, ...props }: NavigationItemCustomProps) =>
       isClose ? (
         <Link
           href={props.href}
-          className={clsx("rounded-md", {
+          className={clsx("group rounded-md", {
             "bg-violet-rgba-light": isActive,
             "hover:bg-violet-rgba-light": !isActive,
           })}
         >
           <Text
             as="span"
-            className="inline-block text-xs text-left capitalize p-2 font-medium"
+            className={clsx(
+              "inline-block text-xs text-left capitalize p-2 font-medium",
+              {
+                "text-primary": isActive,
+                "group-hover:text-primary": !isActive,
+              }
+            )}
           >
             {props.label}
           </Text>
         </Link>
       ) : (
-        <NavigationItem {...props} isCollapse={isClose} />
+        <NavigationItem {...props} isCollapse={isClose} isActive={isActive} />
       ),
     [isClose]
   );
@@ -142,7 +153,11 @@ export const Sidebar = ({ isClose = false, onToggleSidebar }: SidebarProps) => {
       </Box>
       {/* Navigation */}
       <Box as="section" className="p-5">
-        <Navigation navigationItems={ROUTINGS} isCollapse={isClose} />
+        <Navigation
+          navigationItems={ROUTINGS}
+          activePath={pathname}
+          isCollapse={isClose}
+        />
         <Divider className="my-5" />
         <Navigation
           header={{
@@ -157,6 +172,7 @@ export const Sidebar = ({ isClose = false, onToggleSidebar }: SidebarProps) => {
             ),
           }}
           navigationItems={myProjects}
+          activePath={pathname}
           isCollapse={isClose}
         />
       </Box>
