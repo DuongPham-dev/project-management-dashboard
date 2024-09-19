@@ -4,9 +4,9 @@ import { Inter } from "next/font/google";
 // Styles
 import "@app/styles/globals.css";
 // UI
-import { ThemeProvider } from "@app/ui";
+import { Box, Text, ThemeProvider } from "@app/ui";
 // Constants
-import { APP_TITLE } from "@app/constants";
+import { APP_TITLE, WARNING_MESSAGE } from "@app/constants";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -32,7 +32,20 @@ const MainLayout = ({
 }>) => (
   <html lang="en">
     <body className={`${inter.variable}`}>
-      <ThemeProvider>{children}</ThemeProvider>
+      <Box className="hidden xl:block">
+        <ThemeProvider>{children}</ThemeProvider>
+      </Box>
+      <Box className="h-[100dvh] flex xl:hidden flex-col justify-center items-center gap-3 px-10">
+        <Text
+          as="h2"
+          className="text-primary text-2xl md:text-4xl md:text-center font-bold"
+        >
+          {WARNING_MESSAGE.DEVICE_INVALID_TITLE}
+        </Text>
+        <Text className="md:text-xl">
+          {WARNING_MESSAGE.DEVICE_INVALID_DESC}
+        </Text>
+      </Box>
     </body>
   </html>
 );
