@@ -8,6 +8,7 @@ export {
   type NavigationHeader,
   type NavigationItemProps,
   type NavigationProps,
+  type NavigationItemCustomProps,
 } from "./Navigation";
 export * from "./Sidebar";
 export * from "./Header";

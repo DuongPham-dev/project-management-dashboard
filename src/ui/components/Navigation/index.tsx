@@ -6,13 +6,18 @@ import Link from "next/link";
 // UI
 import { Box, Text } from "@app/ui";
 
+export interface NavigationItemCustomProps
+  extends Omit<NavigationItemProps, "render"> {
+  isActive: boolean;
+}
+
 export interface NavigationItemProps {
   id: number;
   label: string;
   href: string;
   leftIcon?: JSX.Element;
   rightIcon?: ReactNode;
-  render?: (props: Omit<NavigationItemProps, "render">) => JSX.Element;
+  render?: (props: NavigationItemCustomProps) => JSX.Element;
 }
 
 export interface NavigationHeader {
@@ -42,7 +47,7 @@ export const NavigationItem = ({
     <Link
       href={href}
       className={clsx(
-        "group flex items-center gap-2 p-2 capitalize rounded-lg font-medium",
+        "group flex items-center gap-2 p-2 capitalize rounded-md font-medium",
         {
           "justify-center": isCollapse,
         },
@@ -58,7 +63,7 @@ export const NavigationItem = ({
       )}
     >
       {leftIcon && (
-        <Text as="span" className="inline-flex items-center">
+        <Text as="span" className="flex items-center">
           {leftIcon}
         </Text>
       )}
@@ -73,7 +78,7 @@ export const NavigationItem = ({
               className={clsx(
                 {
                   hidden: !isActive,
-                  "group-hover:inline-flex": !isActive,
+                  "group-hover:flex": !isActive,
                 },
                 "items-center"
               )}
@@ -97,11 +102,7 @@ const Navigation = ({
     <Box as="nav">
       {header && (
         <Box className="py-5 px-2 flex items-center">
-          <Text
-            className={clsx("uppercase text-xs font-bold flex-1", {
-              "text-center": isCollapse,
-            })}
-          >
+          <Text className={clsx("uppercase text-xs font-bold flex-1")}>
             {header.title}
           </Text>
           {!isCollapse && header?.icon}
@@ -109,12 +110,12 @@ const Navigation = ({
       )}
       <Box as="ul" className="flex flex-col gap-3">
         {navigationItems.map(({ id, render, ...props }) => {
-          const isActive = activeItem && activeItem.id === id;
+          const isActive = !!activeItem && activeItem.id === id;
 
           return (
             <>
               {render ? (
-                render({ id, ...props })
+                render({ id, isActive, ...props })
               ) : (
                 <NavigationItem
                   key={id}
