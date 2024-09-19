@@ -10,7 +10,7 @@ export interface NavigationItem {
   id: number;
   label: string;
   href: string;
-  leftIcon?: ReactNode;
+  leftIcon?: JSX.Element;
   rightIcon?: ReactNode;
 }
 
@@ -48,17 +48,24 @@ const NavigationItem = ({
         }
       )}
     >
-      {leftIcon && <Text as="span">{leftIcon}</Text>}
+      {leftIcon && (
+        <Text as="span" className="inline-flex items-center">
+          {leftIcon}
+        </Text>
+      )}
       <Text as="span" className="flex-1">
         {label}
       </Text>
       {rightIcon && (
         <Text
           as="span"
-          className={clsx({
-            hidden: !isActive,
-            "group-hover:block": !isActive,
-          })}
+          className={clsx(
+            {
+              hidden: !isActive,
+              "group-hover:inline-flex": !isActive,
+            },
+            "items-center"
+          )}
         >
           {rightIcon}
         </Text>

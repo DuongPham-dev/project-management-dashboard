@@ -7,3 +7,4 @@ export {
   type NavigationItem,
   type NavigationProps,
 } from "./Navigation";
+export { default as Sidebar, type SidebarProps } from "./Sidebar";

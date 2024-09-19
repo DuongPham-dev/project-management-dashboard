@@ -11,7 +11,7 @@ import { NavigationHeader, NavigationItem } from "@app/ui";
 // Constants
 import { ROUTER } from "@app/constants";
 
-export const ROUTING_HEADER: NavigationHeader = {
+export const PROJECTS_HEADER: NavigationHeader = {
   title: "My Project",
   icon: (
     <Button isIconOnly className="w-fit h-fit p-0 min-w-0 bg-transparent">
@@ -26,34 +26,29 @@ export const ROUTINGS: NavigationItem[] = [
     label: "home",
     href: ROUTER.ROOT,
     leftIcon: <TbCategory className="w-6 h-6" />,
-    rightIcon: <TbCategory className="w-6 h-6" />,
   },
   {
     id: 2,
     label: "messages",
     href: ROUTER.MESSAGES,
     leftIcon: <AiOutlineMessage className="w-6 h-6" />,
-    rightIcon: <TbCategory className="w-6 h-6" />,
   },
   {
     id: 3,
     label: "tasks",
     href: ROUTER.TASKS,
     leftIcon: <FaTasks className="w-6 h-6" />,
-    rightIcon: <TbCategory className="w-6 h-6" />,
   },
   {
     id: 4,
     label: "members",
     href: ROUTER.MEMBERS,
     leftIcon: <LuUsers className="w-6 h-6" />,
-    rightIcon: <TbCategory className="w-6 h-6" />,
   },
   {
     id: 5,
     label: "settings",
     href: ROUTER.SETTINGS,
     leftIcon: <AiOutlineSetting className="w-6 h-6" />,
-    rightIcon: <TbCategory className="w-6 h-6" />,
   },
 ];
