@@ -18,10 +18,9 @@ export const metadata: Metadata = {
   openGraph: {
     images: [
       {
-        url: "/images/og-image-home.jpg",
-        secureUrl: "/images/og-image-home.jpg",
-        width: 1200,
-        height: 630,
+        url: "/images/logo.webp",
+        width: 800,
+        height: 600,
       },
     ],
     title: "Task. - Simplify Your Task Management",
