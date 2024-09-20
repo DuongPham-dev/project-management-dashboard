@@ -12,7 +12,7 @@ import { BsThreeDots } from "react-icons/bs";
 import { CiSquarePlus } from "react-icons/ci";
 import clsx from "clsx";
 
-// UI
+// Components
 import {
   Box,
   Icon,
@@ -26,6 +26,10 @@ import {
 } from "@app/ui";
 // Mocks
 import { ROUTINGS } from "@app/mocks";
+// Utils
+import { generateURL } from "@app/utils";
+// Constants
+import { ROUTER } from "@app/constants";
 
 export interface SidebarProps {
   isClose?: boolean;
@@ -71,7 +75,7 @@ export const Sidebar = memo(
         [
           {
             id: 1,
-            href: "/mobile-app",
+            href: generateURL(ROUTER.PROJECTS, ["mobile-app"]),
             label: "mobile app",
             leftIcon: <StatusIndicator color="green" />,
             rightIcon: (
@@ -82,7 +86,7 @@ export const Sidebar = memo(
           },
           {
             id: 2,
-            href: "/website-redesign",
+            href: generateURL(ROUTER.PROJECTS, ["website-redesign"]),
             label: "website redesign",
             leftIcon: <StatusIndicator color="orange" />,
             rightIcon: (
@@ -93,7 +97,7 @@ export const Sidebar = memo(
           },
           {
             id: 3,
-            href: "/design-system",
+            href: generateURL(ROUTER.PROJECTS, ["design-system"]),
             label: "design system",
             leftIcon: <StatusIndicator color="lavender" />,
             rightIcon: (
@@ -104,7 +108,7 @@ export const Sidebar = memo(
           },
           {
             id: 4,
-            href: "/wireframes",
+            href: generateURL(ROUTER.PROJECTS, ["wireframes"]),
             label: "wireframes",
             leftIcon: <StatusIndicator color="blue" />,
             rightIcon: (

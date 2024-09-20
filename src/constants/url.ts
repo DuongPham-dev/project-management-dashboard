@@ -5,4 +5,5 @@ export const ROUTER = {
   MEMBERS: "/members",
   SETTINGS: "/settings",
   PROFILE: "/user/profile",
+  PROJECTS: "/projects",
 };
