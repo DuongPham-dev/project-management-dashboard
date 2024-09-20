@@ -6,7 +6,7 @@ import { IoIosHelpCircleOutline } from "react-icons/io";
 import { CiBellOn } from "react-icons/ci";
 
 // UI
-import { Avatar, Box, Button, Icon } from "@app/ui";
+import { User, Box, Button, Icon } from "@app/ui";
 
 export const Header = memo(() => (
   <Box
@@ -38,7 +38,7 @@ export const Header = memo(() => (
           <Icon icon={CiBellOn} />
         </Button>
       </Box>
-      <Avatar
+      <User
         userImage="https://avatars.githubusercontent.com/u/30373425?v=4"
         username="Junior Garcia"
         location="U.P, India"

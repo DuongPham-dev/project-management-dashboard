@@ -1,7 +1,7 @@
 export * from "./common";
 
 export * from "./Logo";
-export * from "./Avatar";
+export * from "./User";
 export {
   default as Navigation,
   NavigationItem,

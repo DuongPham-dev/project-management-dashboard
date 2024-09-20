@@ -1,19 +1,19 @@
-import { User } from "@nextui-org/react";
+import { User as UserNextUI } from "@nextui-org/react";
 import Link from "next/link";
 import React from "react";
 
 // Constants
 import { ROUTER } from "@app/constants";
 
-export interface AvatarProps {
+export interface UserProps {
   username: string;
   location: string;
   userImage: string;
 }
 
-export const Avatar = ({ location, userImage, username }: AvatarProps) => (
+export const User = ({ location, userImage, username }: UserProps) => (
   <Link href={ROUTER.PROFILE}>
-    <User
+    <UserNextUI
       name={username}
       classNames={{
         base: "flex-row-reverse",
