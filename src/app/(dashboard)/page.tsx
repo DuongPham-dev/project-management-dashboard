@@ -2,13 +2,25 @@ import React from "react";
 import { BiPlus } from "react-icons/bi";
 
 // UI
-import { Button } from "@app/ui";
+import { Box, Button, TaskColumn } from "@app/ui";
 
 const Homepage = () => {
   return (
-    <Button size="square-sm" radius="sm" isIconOnly>
-      <BiPlus />
-    </Button>
+    <Box className="w-96">
+      <TaskColumn
+        title="to do"
+        icon={
+          <Button
+            isIconOnly
+            size="fit"
+            color="violet-rgba"
+            className="p-1 rounded-lg"
+          >
+            <BiPlus />
+          </Button>
+        }
+      />
+    </Box>
   );
 };
 
