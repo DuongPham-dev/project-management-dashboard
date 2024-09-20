@@ -13,7 +13,7 @@ const config: Config = {
     "./src/ui/components/common/icons/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/mocks/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
-    "./node_modules/@nextui-org/theme/dist/components/(button|input|ripple|spinner).js",
+    "./node_modules/@nextui-org/theme/dist/components/(button|input|ripple|spinner|skeleton).js",
   ],
   theme: {
     extend: {

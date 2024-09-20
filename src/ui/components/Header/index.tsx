@@ -6,7 +6,7 @@ import { IoIosHelpCircleOutline } from "react-icons/io";
 import { CiBellOn } from "react-icons/ci";
 
 // UI
-import { Avatar, Box, Icon } from "@app/ui";
+import { Avatar, Box, Button, Icon } from "@app/ui";
 
 export const Header = memo(() => (
   <Box
@@ -20,13 +20,23 @@ export const Header = memo(() => (
         input: "text-sm text-gray-dark",
       }}
       placeholder="Search for anything..."
-      startContent={<Icon icon={CiSearch} />}
+      startContent={
+        <Button isIconOnly size="fit" color="none">
+          <Icon icon={CiSearch} />
+        </Button>
+      }
     />
     <Box className="flex-1 flex justify-end gap-6">
       <Box className="flex items-center gap-3">
-        <Icon icon={IoCalendarOutline} />
-        <Icon icon={IoIosHelpCircleOutline} />
-        <Icon icon={CiBellOn} />
+        <Button size="fit" color="none" isIconOnly>
+          <Icon icon={IoCalendarOutline} />
+        </Button>
+        <Button size="fit" color="none" isIconOnly>
+          <Icon icon={IoIosHelpCircleOutline} />
+        </Button>
+        <Button size="fit" color="none" isIconOnly>
+          <Icon icon={CiBellOn} />
+        </Button>
       </Box>
       <Avatar
         userImage="https://avatars.githubusercontent.com/u/30373425?v=4"

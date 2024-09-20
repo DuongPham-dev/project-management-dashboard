@@ -1,5 +1,6 @@
 export const COLORS = {
   primary: "#0D062D",
+  current: "#FFFFFF",
 
   lavender: {
     primary: "#E4CCFD",
