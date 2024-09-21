@@ -3,7 +3,7 @@ import { Divider } from "@nextui-org/react";
 import clsx from "clsx";
 
 // Components
-import { Box, StatusIndicator, Text } from "@app/ui";
+import { Box, StatusIndicator, TaskItem, Text } from "@app/ui";
 
 export interface TaskColumnProps {
   title: string;
@@ -13,7 +13,7 @@ export interface TaskColumnProps {
 
 export const TaskColumn = memo(
   ({ title, icon, color = "border-violet-primary" }: TaskColumnProps) => {
-    const taskSize = 0;
+    const taskSize = 1;
     const tasks = Array.from({ length: taskSize });
 
     return (
@@ -39,13 +39,10 @@ export const TaskColumn = memo(
         {!!tasks.length && (
           <Box
             as="section"
-            className="flex flex-col gap-5 max-h-[750px] overflow-y-scroll"
+            className="flex flex-col gap-5 max-h-[750px] overflow-y-scroll no-scrollbar"
           >
             {tasks.map((_, key) => (
-              <Box
-                key={key}
-                className="rounded-lg h-52 flex-shrink-0 bg-white"
-              ></Box>
+              <TaskItem key={key} />
             ))}
           </Box>
         )}

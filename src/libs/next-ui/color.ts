@@ -39,6 +39,8 @@ export const COLORS = {
 
   red: {
     primary: "#D8727D",
+    secondary: "#F4D7DA",
+    tertiary: "#D25B68",
     rgba: {
       light: "rgba(216, 114, 125, 0.1)",
     },

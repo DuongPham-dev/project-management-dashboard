@@ -12,4 +12,6 @@ export {
 } from "./Navigation";
 export * from "./Sidebar";
 export * from "./Header";
+export * from "./TaskItem";
 export * from "./TaskColumn";
+export * from "./Collaborators";

@@ -7,6 +7,11 @@ const nextConfig = {
         protocol: "https",
         hostname: "https://avatars.githubusercontent.com/",
       },
+      {
+        port: "",
+        protocol: "https",
+        hostname: "nextui.org",
+      },
     ],
   },
 };
