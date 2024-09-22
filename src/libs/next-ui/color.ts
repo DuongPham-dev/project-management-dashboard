@@ -48,5 +48,8 @@ export const COLORS = {
 
   blue: {
     primary: "#76A5EA",
+    rgba: {
+      light: "rgba(0, 0, 255, 0.1)",
+    },
   },
 };

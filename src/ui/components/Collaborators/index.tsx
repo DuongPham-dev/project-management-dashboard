@@ -4,11 +4,12 @@ import React, { memo } from "react";
 import { Avatar, AvatarGroup } from "@nextui-org/react";
 import isEqual from "react-fast-compare";
 import clsx from "clsx";
+import { UserType } from "@app/types";
 
 export interface CollaboratorsProps {
   maxDisplayed?: number;
   size?: keyof typeof SIZE;
-  members?: []; // TODO: Will update type when start build up DB
+  members?: UserType["id"][]; // TODO: Will update type when start build up DB
 }
 
 const SIZE = {

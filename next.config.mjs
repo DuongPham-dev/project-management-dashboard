@@ -12,6 +12,7 @@ const nextConfig = {
         protocol: "https",
         hostname: "nextui.org",
       },
+      { port: "", protocol: "https", hostname: "media.dolenglish.vn" },
     ],
   },
 };

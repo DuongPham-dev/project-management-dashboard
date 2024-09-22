@@ -4,6 +4,12 @@ import clsx from "clsx";
 
 // Components
 import { Box, StatusIndicator, TaskItem, Text } from "@app/ui";
+// Mocks
+import { mockTasks } from "@app/mocks/task";
+// Utils
+import { generateURL } from "@app/utils";
+// Constants
+import { ROUTER } from "@app/constants";
 
 export interface TaskColumnProps {
   title: string;
@@ -41,9 +47,31 @@ export const TaskColumn = memo(
             as="section"
             className="flex flex-col gap-5 max-h-[750px] overflow-y-scroll no-scrollbar"
           >
-            {tasks.map((_, key) => (
-              <TaskItem key={key} />
-            ))}
+            {mockTasks.map(
+              (
+                {
+                  id,
+                  files,
+                  priority,
+                  assignedUserID,
+                  comments = [],
+                  description,
+                  title,
+                },
+                key
+              ) => (
+                <TaskItem
+                  key={key}
+                  assignedUserID={assignedUserID}
+                  description={description}
+                  href={generateURL(ROUTER.TASKS, [id])}
+                  priority={priority}
+                  title={title}
+                  commentSize={comments.length}
+                  files={files}
+                />
+              )
+            )}
           </Box>
         )}
       </Box>

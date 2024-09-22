@@ -1,16 +1,7 @@
 // Constants
-import { TaskPriority, TaskStatus } from "@app/constants";
+import { FileExtensionType, TaskPriority, TaskStatus } from "@app/constants";
 // Types
 import { DateType, ID } from "@app/types";
-
-export interface TaskType {
-  id: string | number; // Database not yet selected for the application (maybe is the MongooseDB)
-  priority: TaskPriority;
-  title: string;
-  description?: string;
-  //   assignedUsers: User[]; // Array of user objects (avatars)
-  imageUrl?: string;
-}
 
 export interface TagType {
   id: ID;
@@ -33,10 +24,10 @@ export interface FileType {
   filename: string;
   uploadedAt: DateType;
   uploadedBy?: ID;
-  fileType?: string;
+  fileType?: FileExtensionType;
 }
 
-export interface Task {
+export interface TaskType {
   id: ID;
   title: string;
   description: string;
@@ -49,5 +40,5 @@ export interface Task {
   dueDate?: DateType;
   tags?: TagType[]; //  List of tags for the task (can be a separate table).
   files?: FileType[];
-  comments: CommentType[];
+  comments?: CommentType[];
 }
