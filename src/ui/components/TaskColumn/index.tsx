@@ -4,23 +4,28 @@ import clsx from "clsx";
 
 // Components
 import { Box, StatusIndicator, TaskItem, Text } from "@app/ui";
-// Mocks
-import { mockTasks } from "@app/mocks/task";
 // Utils
 import { generateURL } from "@app/utils";
 // Constants
 import { ROUTER } from "@app/constants";
+// Types
+import { TaskType } from "@app/types";
 
 export interface TaskColumnProps {
   title: string;
   color?: string;
   icon?: ReactNode;
+  tasks: TaskType[];
 }
 
 export const TaskColumn = memo(
-  ({ title, icon, color = "border-violet-primary" }: TaskColumnProps) => {
-    const taskSize = 1;
-    const tasks = Array.from({ length: taskSize });
+  ({
+    tasks,
+    title,
+    icon,
+    color = "border-violet-primary",
+  }: TaskColumnProps) => {
+    const taskSize = tasks.length;
 
     return (
       <Box className="min-h-52 p-5 bg-gray-light rounded-lg">
@@ -47,7 +52,7 @@ export const TaskColumn = memo(
             as="section"
             className="flex flex-col gap-5 max-h-[750px] overflow-y-scroll no-scrollbar"
           >
-            {mockTasks.map(
+            {tasks.map(
               (
                 {
                   id,

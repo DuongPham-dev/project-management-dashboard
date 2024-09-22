@@ -2,6 +2,7 @@
 import { FileExtensionType, TaskPriority, TaskStatus } from "@app/constants";
 // Types
 import { TaskType } from "@app/types";
+import { mockUsers } from "./user";
 
 export const mockTasks: TaskType[] = [
   {
@@ -12,7 +13,7 @@ export const mockTasks: TaskType[] = [
     status: TaskStatus.IN_PROGRESS,
     createdAt: 1694332800000, // Equivalent to "2024-09-10T08:00:00Z"
     updatedAt: 1694512800000, // Equivalent to "2024-09-12T10:00:00Z"
-    assignedUserID: ["user-1", "user-2"],
+    assignedUserID: mockUsers,
     parentTaskID: undefined,
     dueDate: 1695211200000, // Equivalent to "2024-09-20T12:00:00Z"
     tags: [
@@ -48,7 +49,7 @@ export const mockTasks: TaskType[] = [
     status: TaskStatus.TODO,
     createdAt: 1693900800000, // Equivalent to "2024-09-05T08:00:00Z"
     updatedAt: 1693900800000, // Equivalent to "2024-09-05T08:00:00Z"
-    assignedUserID: ["user-3"],
+    assignedUserID: mockUsers.slice(0, 2),
     parentTaskID: undefined,
     dueDate: undefined,
     tags: [
@@ -66,7 +67,7 @@ export const mockTasks: TaskType[] = [
     status: TaskStatus.COMPLETED,
     createdAt: 1692489600000, // Equivalent to "2024-08-20T08:00:00Z"
     updatedAt: 1693552800000, // Equivalent to "2024-09-01T10:00:00Z"
-    assignedUserID: ["user-4"],
+    assignedUserID: [mockUsers[0]],
     parentTaskID: "task-1",
     dueDate: 1693406400000, // Equivalent to "2024-08-30T12:00:00Z"
     tags: [{ id: "tag-5", label: "DevOps" }],

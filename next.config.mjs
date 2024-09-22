@@ -2,10 +2,11 @@
 const nextConfig = {
   images: {
     remotePatterns: [
+      // Configs test
       {
         port: "",
         protocol: "https",
-        hostname: "https://avatars.githubusercontent.com/",
+        hostname: "avatars.githubusercontent.com",
       },
       {
         port: "",
@@ -13,6 +14,7 @@ const nextConfig = {
         hostname: "nextui.org",
       },
       { port: "", protocol: "https", hostname: "media.dolenglish.vn" },
+      { hostname: "randomuser.me", port: "", protocol: "https" },
     ],
   },
 };

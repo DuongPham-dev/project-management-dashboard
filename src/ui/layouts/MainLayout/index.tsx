@@ -16,7 +16,7 @@ const MainLayout = ({ children }: MainLayoutProps) => {
 
   return (
     <Box>
-      <Box className="fixed h-[100dvh]">
+      <Box className="fixed h-[100dvh] z-[500]">
         <Sidebar isClose={isOpen} onToggleSidebar={isOpen ? onClose : onOpen} />
       </Box>
       <Box
@@ -27,7 +27,7 @@ const MainLayout = ({ children }: MainLayoutProps) => {
         })}
       >
         <Box
-          className={clsx("fixed bg-white", {
+          className={clsx("fixed z-[500] bg-white", {
             "w-[calc(100%-256px)]": !isOpen, // 256px corresponds to w-64 of the Sidebar
             "w-[calc(100%-176px)]": isOpen, // 176px corresponds to w-44 of the Sidebar
           })}

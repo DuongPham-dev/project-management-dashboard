@@ -1,7 +1,7 @@
 // Constants
 import { FileExtensionType, TaskPriority, TaskStatus } from "@app/constants";
 // Types
-import { DateType, ID } from "@app/types";
+import { DateType, ID, UserType } from "@app/types";
 
 export interface TagType {
   id: ID;
@@ -35,7 +35,7 @@ export interface TaskType {
   status: TaskStatus;
   createdAt: DateType;
   updatedAt: DateType;
-  assignedUserID: ID[]; // Will change to list users info
+  assignedUserID: UserType[]; // Will change to list users info
   parentTaskID?: ID;
   dueDate?: DateType;
   tags?: TagType[]; //  List of tags for the task (can be a separate table).

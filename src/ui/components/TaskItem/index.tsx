@@ -43,7 +43,7 @@ export const TaskItem = memo(
     const imageFile = findFirstImageInFiles(files);
 
     return (
-      <Card as={Link} href={href} className="p-6 bg-current overflow-visible">
+      <Card className="p-6 bg-current overflow-visible cursor-pointer">
         <CardHeader className="block">
           <Box className="flex items-center justify-between">
             <TaskStatus label={priority} status={priority} />
@@ -52,7 +52,7 @@ export const TaskItem = memo(
             </Button>
           </Box>
           <Text as="h2" className="text-lg pt-2 text-primary font-semibold">
-            {title}
+            <Link href={href}>{title}</Link>
           </Text>
         </CardHeader>
         <CardBody className="overflow-visible">
