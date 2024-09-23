@@ -12,7 +12,7 @@ import { ColorType, SizeType } from "@app/constants";
 
 export const TaskBoard = memo(() => {
   return (
-    <Box as="section" className="flex items-start gap-10">
+    <Box as="section" className="h-full min-h-64 flex items-start gap-10">
       <TaskColumn
         tasks={mockTasks}
         title="to do"
@@ -33,7 +33,6 @@ export const TaskBoard = memo(() => {
         color={ColorType.ORANGE}
       />
       <TaskColumn tasks={[]} title="done" color={ColorType.BLUE} />
-      <TaskColumn tasks={[]} title="bug" color={ColorType.RED} />
     </Box>
   );
 }, isEqual);

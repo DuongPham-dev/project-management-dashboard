@@ -33,7 +33,7 @@ export const TaskColumn = memo(
     const taskSize = tasks.length;
 
     return (
-      <Box className="w-96 min-h-52 p-5 flex-shrink-0 bg-gray-light rounded-lg">
+      <Box className="w-96 min-h-48 max-h-full p-5 flex-shrink-0 flex flex-col bg-gray-light rounded-lg">
         <Box as="header" className="flex items-center justify-between">
           <Box className="flex items-center gap-3">
             <StatusIndicator color={color ?? ColorType.BLUE} />
@@ -57,7 +57,7 @@ export const TaskColumn = memo(
         {!!tasks.length && (
           <Box
             as="section"
-            className="flex flex-col gap-5 max-h-[750px] overflow-y-scroll no-scrollbar"
+            className="flex-1 flex flex-col gap-5 overflow-y-scroll"
           >
             {tasks.map(
               (
