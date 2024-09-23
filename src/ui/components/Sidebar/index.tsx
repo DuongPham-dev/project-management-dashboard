@@ -29,7 +29,7 @@ import { ROUTINGS } from "@app/mocks";
 // Utils
 import { generateURL } from "@app/utils";
 // Constants
-import { ROUTER } from "@app/constants";
+import { ColorType, ROUTER } from "@app/constants";
 
 export interface SidebarProps {
   isClose?: boolean;
@@ -77,7 +77,7 @@ export const Sidebar = memo(
             id: 1,
             href: generateURL(ROUTER.PROJECTS, ["mobile-app"]),
             label: "mobile app",
-            leftIcon: <StatusIndicator color="green" />,
+            leftIcon: <StatusIndicator color={ColorType.GREEN} />,
             rightIcon: (
               <Button isIconOnly color="none" size="fit">
                 <BsThreeDots className="w-4 h-4" />
@@ -88,7 +88,7 @@ export const Sidebar = memo(
             id: 2,
             href: generateURL(ROUTER.PROJECTS, ["website-redesign"]),
             label: "website redesign",
-            leftIcon: <StatusIndicator color="orange" />,
+            leftIcon: <StatusIndicator color={ColorType.ORANGE} />,
             rightIcon: (
               <Button isIconOnly color="none" size="fit">
                 <BsThreeDots className="w-4 h-4" />
@@ -99,7 +99,7 @@ export const Sidebar = memo(
             id: 3,
             href: generateURL(ROUTER.PROJECTS, ["design-system"]),
             label: "design system",
-            leftIcon: <StatusIndicator color="lavender" />,
+            leftIcon: <StatusIndicator color={ColorType.LAVENDER} />,
             rightIcon: (
               <Button isIconOnly color="none" size="fit">
                 <BsThreeDots className="w-4 h-4" />
@@ -110,7 +110,7 @@ export const Sidebar = memo(
             id: 4,
             href: generateURL(ROUTER.PROJECTS, ["wireframes"]),
             label: "wireframes",
-            leftIcon: <StatusIndicator color="blue" />,
+            leftIcon: <StatusIndicator color={ColorType.BLUE} />,
             rightIcon: (
               <Button isIconOnly color="none" size="fit">
                 <BsThreeDots className="w-4 h-4" />
@@ -124,7 +124,7 @@ export const Sidebar = memo(
     return (
       <Box
         as="aside"
-        className={clsx("h-full border-r-1 border-gray-medium", {
+        className={clsx("h-full border-r-1 border-gray-medium bg-current", {
           "w-44": isClose, // The width of the sidebar when closed.
           "w-64": !isClose, // The width of the sidebar when opened.
         })}

@@ -1,37 +1,42 @@
 import React, { memo, ReactNode } from "react";
 import { Divider } from "@nextui-org/react";
 import clsx from "clsx";
+import isEqual from "react-fast-compare";
 
 // Components
 import { Box, StatusIndicator, TaskItem, Text } from "@app/ui";
 // Utils
 import { generateURL } from "@app/utils";
 // Constants
-import { ROUTER } from "@app/constants";
+import { ColorType, ROUTER } from "@app/constants";
 // Types
 import { TaskType } from "@app/types";
 
 export interface TaskColumnProps {
   title: string;
-  color?: string;
+  color?: ColorType;
   icon?: ReactNode;
   tasks: TaskType[];
 }
 
+const TASK_COLUMN_BORDER_COLOR: Record<string, string> = {
+  blue: "border-blue-primary",
+  green: "border-green-primary",
+  lavender: "border-lavender-primary",
+  orange: "border-orange-primary",
+  red: "border-red-primary",
+  violet: "border-violet-primary",
+};
+
 export const TaskColumn = memo(
-  ({
-    tasks,
-    title,
-    icon,
-    color = "border-violet-primary",
-  }: TaskColumnProps) => {
+  ({ tasks, title, icon, color = ColorType.VIOLET }: TaskColumnProps) => {
     const taskSize = tasks.length;
 
     return (
-      <Box className="min-h-52 p-5 bg-gray-light rounded-lg">
+      <Box className="w-96 min-h-52 p-5 flex-shrink-0 bg-gray-light rounded-lg">
         <Box as="header" className="flex items-center justify-between">
           <Box className="flex items-center gap-3">
-            <StatusIndicator />
+            <StatusIndicator color={color ?? ColorType.BLUE} />
             <Text as="span" className="text-primary capitalize">
               {title}
             </Text>
@@ -46,7 +51,9 @@ export const TaskColumn = memo(
           </Box>
           {!!icon && icon}
         </Box>
-        <Divider className={clsx("my-5 border-t-3", color)} />
+        <Divider
+          className={clsx("my-5 border-t-3", TASK_COLUMN_BORDER_COLOR[color])}
+        />
         {!!tasks.length && (
           <Box
             as="section"
@@ -81,5 +88,6 @@ export const TaskColumn = memo(
         )}
       </Box>
     );
-  }
+  },
+  isEqual
 );

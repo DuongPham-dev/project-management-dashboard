@@ -34,7 +34,7 @@ const MainLayout = ({ children }: MainLayoutProps) => {
         >
           <Header />
         </Box>
-        <Box className="px-10 py-[110px]">{children}</Box>
+        <Box className="w-fit px-10 py-[110px]">{children}</Box>
       </Box>
     </Box>
   );

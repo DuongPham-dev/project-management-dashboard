@@ -1,0 +1,41 @@
+import React, { memo } from "react";
+import isEqual from "react-fast-compare";
+import { BiPlus } from "react-icons/bi";
+
+// Components
+import { Box, Button, TaskColumn } from "@app/ui";
+
+// Mocks
+import { mockTasks } from "@app/mocks";
+// Constants
+import { ColorType } from "@app/constants";
+
+export const TaskBoard = memo(() => {
+  return (
+    <Box as="section" className="flex items-start gap-10">
+      <TaskColumn
+        tasks={mockTasks}
+        title="to do"
+        icon={
+          <Button
+            isIconOnly
+            size="fit"
+            color={ColorType.VIOLET_RGBA}
+            className="p-1 rounded-lg"
+          >
+            <BiPlus />
+          </Button>
+        }
+      />
+      <TaskColumn
+        tasks={mockTasks}
+        title="on progress"
+        color={ColorType.ORANGE}
+      />
+      <TaskColumn tasks={[]} title="done" color={ColorType.BLUE} />
+      <TaskColumn tasks={[]} title="done" color={ColorType.RED} />
+    </Box>
+  );
+}, isEqual);
+
+TaskBoard.displayName = "TaskBoard";
