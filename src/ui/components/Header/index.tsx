@@ -7,6 +7,8 @@ import { CiBellOn } from "react-icons/ci";
 
 // UI
 import { User, Box, Button, Icon } from "@app/ui";
+// Constants
+import { ColorType, SizeType } from "@app/constants";
 
 export const Header = memo(() => (
   <Box
@@ -21,20 +23,20 @@ export const Header = memo(() => (
       }}
       placeholder="Search for anything..."
       startContent={
-        <Button isIconOnly size="fit" color="none">
+        <Button isIconOnly size={SizeType.FIT} color={ColorType.TRANSPARENT}>
           <Icon icon={CiSearch} />
         </Button>
       }
     />
     <Box className="flex-1 flex justify-end gap-6">
       <Box className="flex items-center gap-3">
-        <Button size="fit" color="none" isIconOnly>
+        <Button size={SizeType.FIT} color={ColorType.TRANSPARENT} isIconOnly>
           <Icon icon={IoCalendarOutline} />
         </Button>
-        <Button size="fit" color="none" isIconOnly>
+        <Button size={SizeType.FIT} color={ColorType.TRANSPARENT} isIconOnly>
           <Icon icon={IoIosHelpCircleOutline} />
         </Button>
-        <Button size="fit" color="none" isIconOnly>
+        <Button size={SizeType.FIT} color={ColorType.TRANSPARENT} isIconOnly>
           <Icon icon={CiBellOn} />
         </Button>
       </Box>

@@ -1,4 +1,3 @@
-// import Image from "next/image";
 import React, { memo } from "react";
 import { BsThreeDots } from "react-icons/bs";
 import { BsChatLeftDots } from "react-icons/bs";
@@ -20,6 +19,8 @@ import {
 import { TaskType } from "@app/types";
 // Utils
 import { findFirstImageInFiles, getPluralizedLabel } from "@app/utils";
+// Constants
+import { ColorType, SizeType } from "@app/constants";
 
 export interface TaskItemProps
   extends Pick<
@@ -47,7 +48,11 @@ export const TaskItem = memo(
         <CardHeader className="block">
           <Box className="flex items-center justify-between">
             <TaskStatus label={priority} status={priority} />
-            <Button isIconOnly color="none" size="fit">
+            <Button
+              isIconOnly
+              color={ColorType.TRANSPARENT}
+              size={SizeType.FIT}
+            >
               <Icon icon={BsThreeDots} color="text-primary" />
             </Button>
           </Box>

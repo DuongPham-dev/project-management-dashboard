@@ -29,7 +29,7 @@ import { ROUTINGS } from "@app/mocks";
 // Utils
 import { generateURL } from "@app/utils";
 // Constants
-import { ColorType, ROUTER } from "@app/constants";
+import { ColorType, ROUTER, SizeType } from "@app/constants";
 
 export interface SidebarProps {
   isClose?: boolean;
@@ -79,7 +79,11 @@ export const Sidebar = memo(
             label: "mobile app",
             leftIcon: <StatusIndicator color={ColorType.GREEN} />,
             rightIcon: (
-              <Button isIconOnly color="none" size="fit">
+              <Button
+                isIconOnly
+                color={ColorType.TRANSPARENT}
+                size={SizeType.FIT}
+              >
                 <BsThreeDots className="w-4 h-4" />
               </Button>
             ),
@@ -90,7 +94,11 @@ export const Sidebar = memo(
             label: "website redesign",
             leftIcon: <StatusIndicator color={ColorType.ORANGE} />,
             rightIcon: (
-              <Button isIconOnly color="none" size="fit">
+              <Button
+                isIconOnly
+                color={ColorType.TRANSPARENT}
+                size={SizeType.FIT}
+              >
                 <BsThreeDots className="w-4 h-4" />
               </Button>
             ),
@@ -101,7 +109,11 @@ export const Sidebar = memo(
             label: "design system",
             leftIcon: <StatusIndicator color={ColorType.LAVENDER} />,
             rightIcon: (
-              <Button isIconOnly color="none" size="fit">
+              <Button
+                isIconOnly
+                color={ColorType.TRANSPARENT}
+                size={SizeType.FIT}
+              >
                 <BsThreeDots className="w-4 h-4" />
               </Button>
             ),
@@ -112,7 +124,11 @@ export const Sidebar = memo(
             label: "wireframes",
             leftIcon: <StatusIndicator color={ColorType.BLUE} />,
             rightIcon: (
-              <Button isIconOnly color="none" size="fit">
+              <Button
+                isIconOnly
+                color={ColorType.TRANSPARENT}
+                size={SizeType.FIT}
+              >
                 <BsThreeDots className="w-4 h-4" />
               </Button>
             ),
@@ -136,8 +152,8 @@ export const Sidebar = memo(
           {false && (
             <Button
               isIconOnly
-              color="none"
-              size="fit"
+              color={ColorType.TRANSPARENT}
+              size={SizeType.FIT}
               onClick={onToggleSidebar}
             >
               {isClose ? (
@@ -160,7 +176,11 @@ export const Sidebar = memo(
             header={{
               title: "My Project",
               icon: (
-                <Button isIconOnly color="none" size="fit">
+                <Button
+                  isIconOnly
+                  color={ColorType.TRANSPARENT}
+                  size={SizeType.FIT}
+                >
                   <Icon icon={CiSquarePlus} size={5} />
                 </Button>
               ),

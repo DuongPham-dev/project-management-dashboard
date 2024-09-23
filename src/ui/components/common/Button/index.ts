@@ -3,6 +3,9 @@
 import { Button } from "@nextui-org/button";
 import { extendVariants } from "@nextui-org/system";
 
+// Constants
+import { ColorType, SizeType } from "@app/constants";
+
 export const ButtonCustom = extendVariants(Button, {
   variants: {
     variant: {
@@ -15,7 +18,7 @@ export const ButtonCustom = extendVariants(Button, {
       none: "bg-transparent",
     },
     size: {
-      fit: "w-fit h-fit min-w-fit p-px",
+      fit: "w-fit h-fit min-w-fit p-2",
       "square-sm": "w-10 min-w-[unset] h-10 p-0",
     },
     radius: {
@@ -24,16 +27,18 @@ export const ButtonCustom = extendVariants(Button, {
   },
   defaultVariants: {
     color: "violet",
+    radius: SizeType.SM,
+    className: "cursor-pointer",
   },
   // compoundVariants: means that when the props we define below are used, the class property will be applied, replacing those individual props.
   compoundVariants: [
     {
-      color: "violet",
+      color: ColorType.VIOLET,
       variant: "bordered",
       class: "bg-transparent border-violet-primary text-violet-primary",
     },
     {
-      color: "gray",
+      color: ColorType.GRAY,
       variant: "bordered",
       class: "bg-transparent border-gray-dark text-gray-dark",
     },

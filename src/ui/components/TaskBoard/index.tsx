@@ -8,7 +8,7 @@ import { Box, Button, TaskColumn } from "@app/ui";
 // Mocks
 import { mockTasks } from "@app/mocks";
 // Constants
-import { ColorType } from "@app/constants";
+import { ColorType, SizeType } from "@app/constants";
 
 export const TaskBoard = memo(() => {
   return (
@@ -19,7 +19,7 @@ export const TaskBoard = memo(() => {
         icon={
           <Button
             isIconOnly
-            size="fit"
+            size={SizeType.FIT}
             color={ColorType.VIOLET_RGBA}
             className="p-1 rounded-lg"
           >
@@ -28,12 +28,12 @@ export const TaskBoard = memo(() => {
         }
       />
       <TaskColumn
-        tasks={mockTasks}
+        tasks={mockTasks.slice(1)}
         title="on progress"
         color={ColorType.ORANGE}
       />
       <TaskColumn tasks={[]} title="done" color={ColorType.BLUE} />
-      <TaskColumn tasks={[]} title="done" color={ColorType.RED} />
+      <TaskColumn tasks={[]} title="bug" color={ColorType.RED} />
     </Box>
   );
 }, isEqual);
