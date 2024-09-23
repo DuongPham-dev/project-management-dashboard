@@ -18,7 +18,7 @@ export const ButtonCustom = extendVariants(Button, {
       none: "bg-transparent",
     },
     size: {
-      fit: "w-fit h-fit min-w-fit p-2",
+      fit: "w-fit h-fit min-w-fit p-px",
       "square-sm": "w-10 min-w-[unset] h-10 p-0",
     },
     radius: {

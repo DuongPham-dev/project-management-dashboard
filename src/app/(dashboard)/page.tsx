@@ -22,6 +22,7 @@ const Homepage = () => {
               isIconOnly
               color={ColorType.VIOLET_RGBA}
               size={SizeType.FIT}
+              className="p-2"
             >
               <Icon icon={FaPencil} size={3} />
             </Button>
@@ -29,6 +30,7 @@ const Homepage = () => {
               isIconOnly
               color={ColorType.VIOLET_RGBA}
               size={SizeType.FIT}
+              className="p-2"
             >
               <Icon icon={FaLink} size={3} />
             </Button>
