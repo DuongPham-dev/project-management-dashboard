@@ -1,5 +1,4 @@
 export * from "./url";
-export * from "./async";
+export * from "./fetcher";
 export * from "./string";
-
 export * from "./helpers";

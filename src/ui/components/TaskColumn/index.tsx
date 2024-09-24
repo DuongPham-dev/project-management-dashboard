@@ -32,6 +32,8 @@ export const TaskColumn = memo(
   ({ tasks, title, icon, color = ColorType.VIOLET }: TaskColumnProps) => {
     const taskSize = tasks.length;
 
+    console.log(JSON.stringify(tasks));
+
     return (
       <Box className="w-96 min-h-48 max-h-full p-5 flex-shrink-0 flex flex-col bg-gray-light rounded-lg">
         <Box as="header" className="flex items-center justify-between">
@@ -63,24 +65,24 @@ export const TaskColumn = memo(
               (
                 {
                   id,
-                  files,
                   priority,
-                  assignedUserID,
-                  comments = [],
+                  assignees,
                   description,
                   title,
+                  commentQuantity,
+                  fileQuantity,
                 },
                 key
               ) => (
                 <TaskItem
                   key={key}
-                  assignedUserID={assignedUserID}
+                  assignees={assignees}
                   description={description}
                   href={generateURL(ROUTER.TASKS, [id])}
                   priority={priority}
                   title={title}
-                  commentSize={comments.length}
-                  files={files}
+                  commentQuantity={commentQuantity}
+                  fileQuantity={fileQuantity}
                 />
               )
             )}

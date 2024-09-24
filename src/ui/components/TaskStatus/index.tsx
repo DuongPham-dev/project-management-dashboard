@@ -2,7 +2,7 @@ import { Chip } from "@nextui-org/react";
 import clsx from "clsx";
 
 // Constants
-import { TaskPriority, TaskStatus as TaskStatusType } from "@app/constants";
+import { TaskPriority, TaskStatusType } from "@app/constants";
 
 export interface TaskStatusProps {
   label: string;

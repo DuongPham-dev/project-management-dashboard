@@ -5,7 +5,7 @@ export const enum TaskPriority {
   HIGH = "high",
 }
 
-export const enum TaskStatus {
+export const enum TaskStatusType {
   TODO = "to do",
   IN_PROGRESS = "in progress",
   COMPLETED = "completed",

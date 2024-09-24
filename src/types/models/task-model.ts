@@ -36,6 +36,7 @@ export interface TaskType {
   createdAt: DateType;
   updatedAt: DateType;
   assignedUserID: UserType[]; // Will change to list users info
+  projectID: ID;
   parentTaskID?: ID;
   dueDate?: DateType;
   tags?: TagType[]; //  List of tags for the task (can be a separate table).

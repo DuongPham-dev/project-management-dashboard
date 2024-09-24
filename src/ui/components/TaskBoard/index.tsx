@@ -1,38 +1,51 @@
 import React, { memo } from "react";
 import isEqual from "react-fast-compare";
 import { BiPlus } from "react-icons/bi";
+import { ButtonProps } from "@nextui-org/button";
 
 // Components
 import { Box, Button, TaskColumn } from "@app/ui";
-
-// Mocks
-import { mockTasks } from "@app/mocks";
+// Types
+import { ProjectResponse } from "@app/types";
 // Constants
-import { ColorType, SizeType } from "@app/constants";
+import { SizeType } from "@app/constants";
 
-export const TaskBoard = memo(() => {
+export interface TaskBoardProps {
+  columns: ProjectResponse["columns"];
+}
+
+export const TaskBoard = memo(({ columns }: TaskBoardProps) => {
   return (
-    <Box as="section" className="h-full min-h-64 flex items-start gap-10">
-      <TaskColumn
-        tasks={mockTasks}
-        title="to do"
-        icon={
-          <Button
-            isIconOnly
-            size={SizeType.FIT}
-            color={ColorType.VIOLET_RGBA}
-            className="p-1 rounded-lg"
-          >
-            <BiPlus />
-          </Button>
-        }
-      />
-      <TaskColumn
-        tasks={mockTasks.slice(1)}
-        title="on progress"
-        color={ColorType.ORANGE}
-      />
-      <TaskColumn tasks={[]} title="done" color={ColorType.BLUE} />
+    <Box as="section" className="w-fit h-full min-h-64 flex items-start gap-10">
+      {columns.map(({ id, tasks, title, color }) => {
+        const isTodoColumn = title
+          .replaceAll(" ", "")
+          .toLowerCase()
+          .includes("todo");
+
+        const todoAction = {
+          icon: (
+            <Button
+              isIconOnly
+              size={SizeType.FIT}
+              color={`${color}-rgba` as unknown as ButtonProps["color"]}
+              className="p-1 rounded-lg"
+            >
+              <BiPlus />
+            </Button>
+          ),
+        };
+
+        return (
+          <TaskColumn
+            key={id}
+            tasks={tasks}
+            title={title}
+            color={color}
+            {...(isTodoColumn && todoAction)}
+          />
+        );
+      })}
     </Box>
   );
 }, isEqual);

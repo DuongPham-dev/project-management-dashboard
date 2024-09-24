@@ -17,3 +17,6 @@ export * from "./TaskItem";
 export * from "./TaskColumn";
 export * from "./Collaborators";
 export * from "./TaskBoard";
+export * from "./TaskFilters";
+export * from "./TaskBoardLayoutSwitcher";
+export * from "./TasksActionBar";

@@ -6,7 +6,7 @@ import { mockFetchData } from "@app/utils";
 import { Text } from "@app/ui";
 
 const ProfileUserPage = async () => {
-  await mockFetchData();
+  await mockFetchData({});
 
   return (
     <Text as="h1" className="text-primary text-bold text-3xl">

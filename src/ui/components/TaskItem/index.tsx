@@ -20,15 +20,19 @@ import { TaskType } from "@app/types";
 // Utils
 import { findFirstImageInFiles, getPluralizedLabel } from "@app/utils";
 // Constants
-import { ColorType, SizeType } from "@app/constants";
+import { ColorType, SizeType, TaskPriority } from "@app/constants";
 
 export interface TaskItemProps
   extends Pick<
     TaskType,
-    "description" | "files" | "priority" | "assignedUserID" | "title"
+    | "assignees"
+    | "description"
+    | "priority"
+    | "title"
+    | "commentQuantity"
+    | "fileQuantity"
   > {
   href: string;
-  commentSize?: number;
 }
 
 export const TaskItem = memo(
@@ -37,17 +41,20 @@ export const TaskItem = memo(
     description,
     href,
     priority,
-    commentSize = 0,
-    files = [],
-    assignedUserID,
+    commentQuantity,
+    fileQuantity,
+    assignees,
   }: TaskItemProps) => {
-    const imageFile = findFirstImageInFiles(files);
+    const imageFile = findFirstImageInFiles([]);
 
     return (
       <Card className="p-6 bg-current overflow-visible cursor-pointer">
         <CardHeader className="block">
           <Box className="flex items-center justify-between">
-            <TaskStatus label={priority} status={priority} />
+            <TaskStatus
+              label={priority}
+              status={priority as unknown as TaskPriority}
+            />
             <Button
               isIconOnly
               color={ColorType.TRANSPARENT}
@@ -74,19 +81,19 @@ export const TaskItem = memo(
         </CardBody>
         <CardFooter className="mt-10">
           <Box className="flex justify-between items-center">
-            <TaskCollaborators size="xs" members={assignedUserID} />
+            <TaskCollaborators size="xs" members={assignees} />
           </Box>
           <Box className="flex-1 flex items-center justify-end gap-3">
             <Box className="flex items-center gap-1">
               <Icon icon={BsChatLeftDots} size={4} />
               <Text className="text-xs">
-                {getPluralizedLabel("comment", { count: commentSize })}
+                {getPluralizedLabel("comment", { count: commentQuantity })}
               </Text>
             </Box>
             <Box className="flex items-center gap-1">
               <Icon icon={CiFileOn} size={4} />
               <Text className="text-xs">
-                {getPluralizedLabel("file", { count: files.length })}
+                {getPluralizedLabel("file", { count: fileQuantity })}
               </Text>
             </Box>
           </Box>

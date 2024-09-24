@@ -2,28 +2,20 @@ import { redirect } from "next/navigation";
 import React from "react";
 
 // Constants
-import { ROUTER } from "@app/constants";
+import { DYNAMIC_PARAMS, ROUTER } from "@app/constants";
 // Mocks
 import { MY_PROJECT } from "@app/mocks";
 // Utils
 import { mockFetchData } from "@app/utils";
 // Components
 import { Text } from "@app/ui";
+// Types
+import { ParamsType } from "@app/types";
 
-interface PageParams {
-  params: {
-    myProject: string[];
-  };
-}
+const MyProject = async ({ params }: ParamsType) => {
+  await mockFetchData({});
 
-const MyProject = async ({
-  params: {
-    myProject: [currentProject],
-  },
-}: PageParams) => {
-  await mockFetchData();
-
-  if (!MY_PROJECT.includes(currentProject)) {
+  if (!MY_PROJECT.includes(params[DYNAMIC_PARAMS.PROJECT_ID])) {
     redirect(ROUTER.ROOT);
   }
 
