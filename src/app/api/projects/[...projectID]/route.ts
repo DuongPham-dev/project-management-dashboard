@@ -20,35 +20,43 @@ import { mockFetchData } from "@app/utils";
 export const GET = (_: NextRequest, { params }: ParamsType) => {
   const projectID = params[DYNAMIC_PARAMS.PROJECT_ID];
   const project = boards.filter(({ id }) => projectID.includes(id))[0];
-  const columns = lists
-    .filter(({ projectID }) => projectID.includes(project?.id ?? ""))
-    .map(({ id, ...columnRest }) => ({
-      id,
-      ...columnRest,
-      tasks: cards
-        .filter(({ columnID }) => columnID.includes(id))
-        .map(({ id, ...taskRest }) => ({
-          id,
-          ...taskRest,
-          assignees: cardAssignees
-            .filter(({ cardID }) => cardID.includes(id))
-            .map(({ userID }) => {
-              const usersInfo = userID
-                .map((id) =>
-                  users.filter(({ id: user_id }) => user_id.includes(id))
-                )
-                .flat();
+  const columns = [
+    ...lists
+      .filter(({ projectID }) => projectID.includes(project?.id ?? ""))
+      .map(({ id, ...columnRest }) => ({
+        id,
+        ...columnRest,
+        tasks: cards
+          .filter(({ columnID }) => columnID.includes(id))
+          .map(({ id, ...taskRest }) => ({
+            id,
+            ...taskRest,
+            assignees: cardAssignees
+              .filter(({ cardID }) => cardID.includes(id))
+              .map(({ userID }) => {
+                const usersInfo = userID
+                  .map((id) =>
+                    users.filter(({ id: user_id }) => user_id.includes(id))
+                  )
+                  .flat();
 
-              return usersInfo;
-            })[0],
-          commentQuantity: cardComments.filter(({ taskID }) =>
-            taskID.includes(id)
-          ).length,
-          fileQuantity: cardAttachments.filter(({ taskID }) =>
-            id.includes(taskID)
-          ).length,
-        })),
-    }));
+                return usersInfo;
+              })[0],
+            commentQuantity: cardComments.filter(({ taskID }) =>
+              taskID.includes(id)
+            ).length,
+            fileQuantity: cardAttachments.filter(({ taskID }) =>
+              id.includes(taskID)
+            ).length,
+          })),
+      })),
+  ].sort((a, b) => {
+    if (a.position > b.position) return 1;
+
+    if (a.position < b.position) return -1;
+
+    return 0;
+  });
 
   return mockFetchData({
     delaySeconds: 0,

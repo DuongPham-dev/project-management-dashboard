@@ -82,6 +82,15 @@ export const boards: ProjectModel[] = [
 // Mock Data for ListType
 export const lists: ColumnModel[] = [
   {
+    id: "list3",
+    projectID: "board1",
+    title: "Done",
+    color: ColorType.GREEN,
+    position: 3,
+    createdAt: 1694267000,
+    updatedAt: 1694268000,
+  },
+  {
     id: "list1",
     projectID: "board1",
     title: "Todo",
@@ -95,15 +104,6 @@ export const lists: ColumnModel[] = [
     projectID: "board1",
     title: "In Progress",
     color: ColorType.ORANGE,
-    position: 2,
-    createdAt: 1694267000,
-    updatedAt: 1694268000,
-  },
-  {
-    id: "list3",
-    projectID: "board1",
-    title: "Done",
-    color: ColorType.GREEN,
     position: 2,
     createdAt: 1694267000,
     updatedAt: 1694268000,
