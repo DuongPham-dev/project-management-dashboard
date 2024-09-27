@@ -27,7 +27,9 @@ export const GET = (_: NextRequest, { params }: ParamsType) => {
         id,
         ...columnRest,
         tasks: cards
+          // Filter tasks by column
           .filter(({ columnID }) => columnID.includes(id))
+          // Add field "assignees, commentQuantity, fileQuantity" by task
           .map(({ id, ...taskRest }) => ({
             id,
             ...taskRest,
@@ -51,6 +53,7 @@ export const GET = (_: NextRequest, { params }: ParamsType) => {
           })),
       })),
   ].sort((a, b) => {
+    // Sort column ASC by position
     if (a.position > b.position) return 1;
 
     if (a.position < b.position) return -1;
