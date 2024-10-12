@@ -17,6 +17,7 @@ const nextConfig = {
       { hostname: "randomuser.me", port: "", protocol: "https" },
     ],
   },
+  reactStrictMode: process.env.NODE_ENV.includes("production"),
 };
 
 export default nextConfig;

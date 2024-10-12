@@ -11,7 +11,10 @@ export interface GetTasksByProjectIdParams {
 
 export const getTasksByProjectId = async ({
   projectId,
-}: GetTasksByProjectIdParams): Promise<Response> =>
-  mockFetchData<Response>({
+}: GetTasksByProjectIdParams): Promise<Response> => {
+  console.log({ projectId });
+
+  return mockFetchData<Response>({
     mockData: new Response(JSON.stringify(mockTasks)),
   });
+};

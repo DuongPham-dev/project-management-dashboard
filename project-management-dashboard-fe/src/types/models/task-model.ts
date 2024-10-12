@@ -1,7 +1,12 @@
 // Constants
-import { FileExtensionType, TaskPriority, TaskStatus } from "@app/constants";
+import {
+  FileExtensionType,
+  TaskPriority,
+  TaskStatusType,
+} from "@app/constants";
 // Types
-import { DateType, ID, UserType } from "@app/types";
+import { DateType, ID } from "@app/types";
+import { UserType } from "./user-model";
 
 export interface TagType {
   id: ID;
@@ -32,7 +37,7 @@ export interface TaskType {
   title: string;
   description: string;
   priority: TaskPriority;
-  status: TaskStatus;
+  status: TaskStatusType;
   createdAt: DateType;
   updatedAt: DateType;
   assignedUserID: UserType[]; // Will change to list users info

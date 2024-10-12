@@ -1,10 +1,13 @@
+"use client";
+
+import Image from "next/image";
+import Link from "next/link";
 import React, { memo } from "react";
 import { BsThreeDots } from "react-icons/bs";
 import { BsChatLeftDots } from "react-icons/bs";
 import { CiFileOn } from "react-icons/ci";
 import { Card, CardBody, CardFooter, CardHeader } from "@nextui-org/react";
-import Image from "next/image";
-import Link from "next/link";
+import { Draggable, DraggableProvided } from "react-beautiful-dnd";
 
 // Components
 import {
@@ -31,12 +34,15 @@ export interface TaskItemProps
     | "title"
     | "commentQuantity"
     | "fileQuantity"
+    | "id"
   > {
   href: string;
+  indexOfTask: number;
 }
 
 export const TaskItem = memo(
   ({
+    id,
     title,
     description,
     href,
@@ -44,61 +50,71 @@ export const TaskItem = memo(
     commentQuantity,
     fileQuantity,
     assignees,
+    indexOfTask,
   }: TaskItemProps) => {
     const imageFile = findFirstImageInFiles([]);
 
     return (
-      <Card className="p-6 bg-current overflow-visible cursor-pointer">
-        <CardHeader className="block">
-          <Box className="flex items-center justify-between">
-            <TaskStatus
-              label={priority}
-              status={priority as unknown as TaskPriority}
-            />
-            <Button
-              isIconOnly
-              color={ColorType.TRANSPARENT}
-              size={SizeType.FIT}
-            >
-              <Icon icon={BsThreeDots} color="text-primary" />
-            </Button>
-          </Box>
-          <Text as="h2" className="text-lg pt-2 text-primary font-semibold">
-            <Link href={href}>{title}</Link>
-          </Text>
-        </CardHeader>
-        <CardBody className="overflow-visible">
-          <Text className="text-xs">{description}</Text>
-          {imageFile && (
-            <Image
-              alt={imageFile.filename}
-              className="object-cover rounded-xl w-full"
-              src={imageFile.fileURL}
-              width={270}
-              height={270}
-            />
-          )}
-        </CardBody>
-        <CardFooter className="mt-10">
-          <Box className="flex justify-between items-center">
-            <TaskCollaborators size="xs" members={assignees} />
-          </Box>
-          <Box className="flex-1 flex items-center justify-end gap-3">
-            <Box className="flex items-center gap-1">
-              <Icon icon={BsChatLeftDots} size={4} />
-              <Text className="text-xs">
-                {getPluralizedLabel("comment", { count: commentQuantity })}
+      <Draggable draggableId={id.toString()} index={indexOfTask}>
+        {(provided: DraggableProvided) => (
+          <Card
+            className="p-6 bg-current overflow-visible cursor-pointer"
+            ref={provided.innerRef}
+            {...provided.draggableProps}
+            {...provided.dragHandleProps}
+          >
+            <CardHeader className="block">
+              <Box className="flex items-center justify-between">
+                <TaskStatus
+                  label={priority}
+                  status={priority as unknown as TaskPriority}
+                />
+                <Button
+                  isIconOnly
+                  color={ColorType.TRANSPARENT}
+                  size={SizeType.FIT}
+                >
+                  <Icon icon={BsThreeDots} color="text-primary" />
+                </Button>
+              </Box>
+              <Text as="h2" className="text-lg pt-2 text-primary font-semibold">
+                <Link href={href}>{title}</Link>
               </Text>
-            </Box>
-            <Box className="flex items-center gap-1">
-              <Icon icon={CiFileOn} size={4} />
-              <Text className="text-xs">
-                {getPluralizedLabel("file", { count: fileQuantity })}
-              </Text>
-            </Box>
-          </Box>
-        </CardFooter>
-      </Card>
+            </CardHeader>
+            <CardBody className="overflow-visible">
+              <Text className="text-xs">{description}</Text>
+              {imageFile && (
+                <Image
+                  alt={imageFile.filename}
+                  className="object-cover rounded-xl w-full"
+                  src={imageFile.fileURL}
+                  width={270}
+                  height={270}
+                />
+              )}
+            </CardBody>
+            <CardFooter className="mt-10">
+              <Box className="flex justify-between items-center">
+                <TaskCollaborators size="xs" members={assignees} />
+              </Box>
+              <Box className="flex-1 flex items-center justify-end gap-3">
+                <Box className="flex items-center gap-1">
+                  <Icon icon={BsChatLeftDots} size={4} />
+                  <Text className="text-xs">
+                    {getPluralizedLabel("comment", { count: commentQuantity })}
+                  </Text>
+                </Box>
+                <Box className="flex items-center gap-1">
+                  <Icon icon={CiFileOn} size={4} />
+                  <Text className="text-xs">
+                    {getPluralizedLabel("file", { count: fileQuantity })}
+                  </Text>
+                </Box>
+              </Box>
+            </CardFooter>
+          </Card>
+        )}
+      </Draggable>
     );
   }
 );

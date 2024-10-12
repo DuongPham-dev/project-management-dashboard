@@ -1,7 +1,10 @@
-import React, { memo, ReactNode } from "react";
+"use client";
+
+import React, { memo, ReactNode, useState } from "react";
 import { Divider } from "@nextui-org/react";
 import clsx from "clsx";
 import isEqual from "react-fast-compare";
+import { Droppable, DroppableProvided } from "react-beautiful-dnd";
 
 // Components
 import { Box, StatusIndicator, TaskItem, Text } from "@app/ui";
@@ -29,10 +32,15 @@ const TASK_COLUMN_BORDER_COLOR: Record<string, string> = {
 };
 
 export const TaskColumn = memo(
-  ({ tasks, title, icon, color = ColorType.VIOLET }: TaskColumnProps) => {
-    const taskSize = tasks.length;
+  ({
+    tasks: tasksInColumn,
+    title,
+    icon,
+    color = ColorType.VIOLET,
+  }: TaskColumnProps) => {
+    const [tasks] = useState(tasksInColumn);
 
-    console.log(JSON.stringify(tasks));
+    const taskSize = tasks.length;
 
     return (
       <Box className="w-96 min-h-48 max-h-full p-5 flex-shrink-0 flex flex-col bg-gray-light rounded-lg">
@@ -57,36 +65,44 @@ export const TaskColumn = memo(
           className={clsx("my-5 border-t-3", TASK_COLUMN_BORDER_COLOR[color])}
         />
         {!!tasks.length && (
-          <Box
-            as="section"
-            className="flex-1 flex flex-col gap-5 overflow-y-scroll"
-          >
-            {tasks.map(
-              (
-                {
-                  id,
-                  priority,
-                  assignees,
-                  description,
-                  title,
-                  commentQuantity,
-                  fileQuantity,
-                },
-                key
-              ) => (
-                <TaskItem
-                  key={key}
-                  assignees={assignees}
-                  description={description}
-                  href={generateURL(ROUTER.TASKS, [id])}
-                  priority={priority}
-                  title={title}
-                  commentQuantity={commentQuantity}
-                  fileQuantity={fileQuantity}
-                />
-              )
+          <Droppable droppableId={`column-${title}`}>
+            {(provided: DroppableProvided) => (
+              <section
+                className="flex-1 flex flex-col gap-5 overflow-y-scroll"
+                ref={provided.innerRef}
+                {...provided.droppableProps}
+              >
+                {tasks.map(
+                  (
+                    {
+                      id,
+                      priority,
+                      assignees,
+                      description,
+                      title,
+                      commentQuantity,
+                      fileQuantity,
+                    },
+                    key
+                  ) => (
+                    <TaskItem
+                      key={key + "1"}
+                      id={id}
+                      indexOfTask={key}
+                      assignees={assignees}
+                      description={description}
+                      href={generateURL(ROUTER.TASKS, [id])}
+                      priority={priority}
+                      title={title}
+                      commentQuantity={commentQuantity}
+                      fileQuantity={fileQuantity}
+                    />
+                  )
+                )}
+                {provided.placeholder}
+              </section>
             )}
-          </Box>
+          </Droppable>
         )}
       </Box>
     );
