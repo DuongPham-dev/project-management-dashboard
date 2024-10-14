@@ -1,0 +1,32 @@
+name: Test Action
+
+on: push
+
+jobs:
+  my-job:
+    name: My Job
+    runs-on: ubuntu-latest
+    steps:
+      - name: Post to a Slack channel
+        id: slack
+        uses: slackapi/slack-github-action@v1.27.0
+        with:
+          # Slack channel id, channel name, or user id to post message.
+          # See also: https://api.slack.com/methods/chat.postMessage#channels
+          channel-id: "C07R8R09CF2"
+          # For posting a rich message using Block Kit
+          payload: |
+            {
+              "text": "GitHub Action build result: ${{ job.status }}\n${{ github.event.pull_request.html_url || github.event.head_commit.url }}",
+              "blocks": [
+                {
+                  "type": "section",
+                  "text": {
+                    "type": "mrkdwn",
+                    "text": "GitHub Action build result: ${{ job.status }}\n${{ github.event.pull_request.html_url || github.event.head_commit.url }}"
+                  }
+                }
+              ]
+            }
+        env:
+          SLACK_BOT_TOKEN: "xoxe.xoxp-1-Mi0yLTc4MzYwNTYwOTkwNzQtNzgzODU1NzcyOTQ0NC03ODYzNDk1MzI1MDYyLTc4NzQzNDA2NTgzODctZjVjNzg1NWI5MjNmYWYyY2JkODk3ZjQyODY2ZWRmNDE5ZDUxYTkxZGJhY2VkNGI3YWEzMjg5OTFmNDJkNDYyMA"
